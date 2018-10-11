@@ -13,7 +13,7 @@ export default ({ items, render, active }) => (
         'li',
         props,
         render(item)
-      )
+      );
     })
   )
 );
