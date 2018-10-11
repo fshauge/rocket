@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    title: '🚀'
+    title: '🚀 Rocket'
   },
   {
     path: '/about',
