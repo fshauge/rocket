@@ -1,18 +1,14 @@
 import { isNull } from './utils.js';
 
-function appendChild(element, child) {
-  if (!isNull(child)) {
-    if (child instanceof HTMLElement) {
-      element.appendChild(child);
-    } else {
-      element.innerText = child;
-    }
-  }
-}
-
 function appendChildren(element, children) {
-  for (const child of children) {
-    appendChild(element, child);
+  if (!isNull(children)) {
+    if (children instanceof Array) {
+      children.map(child => appendChildren(element, child));
+    } else if (children instanceof HTMLElement) {
+      element.appendChild(children);
+    } else {
+      element.innerText = children;
+    }
   }
 }
 
@@ -29,15 +25,7 @@ function renderComponent(component, props, children) {
 function renderElement(tagName, attributes, children) {
   const element = document.createElement(tagName);
   Object.assign(element, attributes);
-
-  if (!isNull(children)) {
-    if (children instanceof Array) {
-      appendChildren(element, children);
-    } else {
-      appendChild(element, children);
-    }
-  }
-
+  appendChildren(element, children);
   return element;
 }
 
@@ -67,5 +55,5 @@ export function render(element, component) {
     : createElement(component, null, null);
 
   removeChildren(parent);
-  appendChild(parent, child);
+  appendChildren(parent, child);
 }
