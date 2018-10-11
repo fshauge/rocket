@@ -29,6 +29,13 @@ function renderElement(tagName, attributes, children) {
   return element;
 }
 
+/**
+ * Creates an element from a component or a tag name.
+ *
+ * @param {any} type
+ * @param {any} props
+ * @param {any} children
+ */
 export function createElement(type, props, children) {
   if (type instanceof Function) {
     return renderComponent(type, props, children);
@@ -38,9 +45,9 @@ export function createElement(type, props, children) {
 }
 
 /**
- * Bootstraps Rocket rendering.
- * Use this function to render a component or element
- * to the specified parent element or css selector.
+ * Bootstraps Rocket rendering. Use this function to
+ * render a component or element to the specified
+ * parent element or CSS selector.
  *
  * @param {HTMLElement} parent
  * @param {any} component
