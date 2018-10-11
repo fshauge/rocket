@@ -15,7 +15,7 @@ export function once(dispatcher, type, listener) {
 /**
  * Fires when the page is ready to be rendered to.
  *
- * @param {*} listener
+ * @param {any} listener
  */
 export function ready(listener) {
   once(window, 'load', listener);

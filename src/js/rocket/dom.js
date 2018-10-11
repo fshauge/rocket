@@ -33,8 +33,8 @@ function renderElement(tagName, attributes, children) {
  * Creates an element from a component or a tag name.
  *
  * @param {any} type
- * @param {any} props
- * @param {any} children
+ * @param {any} [props]
+ * @param {any} [children]
  */
 export function createElement(type, props, children) {
   if (type instanceof Function) {
