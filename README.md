@@ -8,5 +8,11 @@ The goal was to reason about how React handles DOM rendering,
 and create a rendering system from scratch that could be
 used in assignments that require pure HTML, CSS and JavaScript.
 
+## Usage
+```
+$ npm install
+$ npm start
+```
+
 ## Rendered with Rocket
 ![Render](./images/render.png)
