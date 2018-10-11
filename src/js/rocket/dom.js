@@ -1,20 +1,20 @@
 import { isNull } from './utils.js';
 
-function appendChildren(element, children) {
+function appendChildren(parent, children) {
   if (!isNull(children)) {
     if (children instanceof Array) {
-      children.map(child => appendChildren(element, child));
+      children.map(child => appendChildren(parent, child));
     } else if (children instanceof HTMLElement) {
-      element.appendChild(children);
+      parent.appendChild(children);
     } else {
-      element.innerText = children;
+      parent.innerText = children;
     }
   }
 }
 
-function removeChildren(element) {
-  while (!isNull(element.lastChild)) {
-    element.lastChild.remove();
+function removeChildren(parent) {
+  while (!isNull(parent.lastChild)) {
+    parent.lastChild.remove();
   }
 }
 
