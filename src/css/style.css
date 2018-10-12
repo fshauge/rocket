@@ -10,10 +10,6 @@ body {
   font-size: 16px;
 }
 
-h1 {
-  font-size: 2em;
-}
-
 p {
   margin: 1em 0;
   line-height: 1.75em;
@@ -59,12 +55,12 @@ nav > ul > li > div > a:hover {
 
 /* Content styling */
 
-section {
+div > div {
   background-color: #eee;
   min-height: 100vh;
 }
 
-section > div {
+div > div > div {
   max-width: 800px;
   margin: auto;
   padding: 1.5em;
