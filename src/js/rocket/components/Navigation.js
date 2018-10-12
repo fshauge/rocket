@@ -10,21 +10,21 @@ export default ({ routes, activeIndex }) => (
       List,
       {
         items: routes,
-        render: ({ path, title }) => (
+        render: ({ path, title }, index) => (
           Rocket.createElement(
-            Link,
-            {
-              href: path
-            },
-            title
+            'div',
+            index === activeIndex
+              ? { className: 'active' }
+              : null,
+            Rocket.createElement(
+              Link,
+              {
+                href: path
+              },
+              title
+            )
           )
-        ),
-        active: {
-          index: activeIndex,
-          props: {
-            className: 'active'
-          }
-        }
+        )
       },
       null
     )

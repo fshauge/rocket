@@ -1,19 +1,15 @@
 import * as Rocket from '../index.js';
 
-export default ({ items, render, active }) => (
+export default ({ items, render }) => (
   Rocket.createElement(
     'ul',
     null,
-    items.map((item, index) => {
-      const props = active && active.index === index
-        ? active.props :
-        null;
-
-      return Rocket.createElement(
+    items.map((item, index) => (
+      Rocket.createElement(
         'li',
-        props,
-        render(item)
-      );
-    })
+        null,
+        render(item, index)
+      )
+    ))
   )
 );

@@ -16,7 +16,7 @@ h1 {
 
 p {
   margin: 1em 0;
-  line-height: 1.5em;
+  line-height: 1.75em;
 }
 
 /* Navigation styling */
@@ -37,20 +37,23 @@ nav > ul {
 
 nav > ul > li {
   float: left;
+}
+
+nav > ul > li > div {
   padding: 1.25em 1.5em;
 }
 
-nav > ul > li.active {
+nav > ul > li > div.active {
   background-color: #353d45;
 }
 
-nav > ul > li > a {
+nav > ul > li > div > a {
   text-decoration: none;
   color: #fff;
-  line-height: 0;
+  line-height: 1em;
 }
 
-nav > ul > li > a:hover {
+nav > ul > li > div > a:hover {
   color: #ddd;
 }
 
