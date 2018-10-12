@@ -18,13 +18,21 @@ function removeChildren(parent) {
   }
 }
 
+function assignAttributes(element, attributes) {
+  for (const attribute in attributes) {
+    if (attribute !== 'children') {
+      element[attribute] = attributes[attribute];
+    }
+  }
+}
+
 function renderComponent(component, props, children) {
   return component({ ...props, children });
 }
 
 function renderElement(tagName, attributes, children) {
   const element = document.createElement(tagName);
-  Object.assign(element, attributes);
+  assignAttributes(element, attributes);
   appendChildren(element, children);
   return element;
 }
