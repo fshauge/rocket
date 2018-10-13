@@ -3,7 +3,7 @@ import { isNull } from './utils.js';
 function appendChildren(parent, children) {
   if (!isNull(children)) {
     if (children instanceof Array) {
-      children.map(child => appendChildren(parent, child));
+      children.forEach(child => appendChildren(parent, child));
     } else if (children instanceof HTMLElement) {
       parent.appendChild(children);
     } else {
