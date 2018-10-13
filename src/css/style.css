@@ -25,14 +25,12 @@ nav {
 
 nav > ul {
   list-style-type: none;
-  overflow: hidden;
-  text-align: center;
   max-width: 800px;
   margin: auto;
 }
 
 nav > ul > li {
-  float: left;
+  display: inline-block;
 }
 
 nav > ul > li > div {
@@ -44,9 +42,9 @@ nav > ul > li > div.active {
 }
 
 nav > ul > li > div > a {
+  line-height: 1em;
   text-decoration: none;
   color: #fff;
-  line-height: 1em;
 }
 
 nav > ul > li > div > a:hover {
@@ -63,5 +61,5 @@ div > div {
 div > div > div {
   max-width: 800px;
   margin: auto;
-  padding: 1.5em;
+  padding: 1.5em 0;
 }
