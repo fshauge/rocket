@@ -7,7 +7,7 @@ function appendChildren(parent, children) {
     } else if (children instanceof HTMLElement) {
       parent.appendChild(children);
     } else {
-      parent.innerText = children;
+      parent.appendChild(document.createTextNode(children));
     }
   }
 }
