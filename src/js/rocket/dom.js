@@ -1,7 +1,7 @@
-import { isNull } from './utils.js';
+import { isNullOrUndefined } from './utils.js';
 
 function appendChildren(parent, children) {
-  if (!isNull(children)) {
+  if (!isNullOrUndefined(children)) {
     if (children instanceof Array) {
       children.forEach(child => appendChildren(parent, child));
     } else if (children instanceof HTMLElement) {
@@ -13,7 +13,7 @@ function appendChildren(parent, children) {
 }
 
 function removeChildren(parent) {
-  while (!isNull(parent.lastChild)) {
+  while (!isNullOrUndefined(parent.lastChild)) {
     parent.lastChild.remove();
   }
 }
