@@ -10,7 +10,7 @@ used in assignments that require pure HTML, CSS and JavaScript only.
 
 The code is not currently a library. It contains code to generate
 DOM elements as well. It might be seperated in the future,
-but as of now (WIP), it will stay the as is.
+but as of now (WIP), it will stay as is.
 
 ## Usage
 Install the dev dependencies and start a development server:
