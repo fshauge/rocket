@@ -1,5 +1,5 @@
 import * as Rocket from '../../rocket/index.js';
-import Navigation from '../../rocket/components/Navigation.js';
+import Navigation from '../../components/Navigation.js';
 import routes from './routes.js';
 
 export default () => [

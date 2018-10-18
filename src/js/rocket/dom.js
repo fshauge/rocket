@@ -1,74 +1,69 @@
-import { isNullOrUndefined } from './utils.js';
+import { isNullOrUndefined, matchType } from './utils.js';
+import { restrictedProps } from './props.js';
 
-function appendChildren(parent, children) {
-  if (!isNullOrUndefined(children)) {
-    if (children instanceof Array) {
-      children.forEach(child => appendChildren(parent, child));
-    } else if (children instanceof HTMLElement) {
-      parent.appendChild(children);
-    } else {
-      parent.appendChild(document.createTextNode(children));
+function renderComponent({ type: component, props, children }) {
+  return render(component({ ...props, children }));
+}
+
+function renderElement({ type, props, children }) {
+  const element = document.createElement(type);
+
+  for (const prop in props) {
+    if (!restrictedProps.includes(prop)) {
+      element[prop] = props[prop];
     }
   }
-}
 
-function removeChildren(parent) {
-  while (!isNullOrUndefined(parent.lastChild)) {
-    parent.lastChild.remove();
+  for (const child of children.flat()) {
+    render(child, element);
   }
-}
 
-function assignAttributes(element, attributes) {
-  for (const attribute in attributes) {
-    if (attribute !== 'children') {
-      element[attribute] = attributes[attribute];
-    }
-  }
-}
-
-function renderComponent(component, props, children) {
-  return component({ ...props, children });
-}
-
-function renderElement(tagName, attributes, children) {
-  const element = document.createElement(tagName);
-  assignAttributes(element, attributes);
-  appendChildren(element, children);
   return element;
 }
 
+function renderFragment(children) {
+  const fragment = document.createDocumentFragment();
+
+  for (const child of children) {
+    render(child, fragment);
+  }
+
+  return fragment;
+}
+
 /**
- * Creates an element from a component or a tag name.
+ * Renders a virtual DOM tree element to the document.
  *
- * @param {any} type
- * @param {any} [props]
- * @param {any} [children]
+ * @param {*} element
+ * @param {*} parent
  */
-export function createElement(type, props, children) {
-  if (type instanceof Function) {
-    return renderComponent(type, props, children);
+export function render(element, parent) {
+  const append = parent
+    ? child => parent.appendChild(child)
+    : child => child;
+
+  if (isNullOrUndefined(element) || matchType(element, Boolean)) {
+    return append(document.createTextNode(''));
+  } else if (matchType(element, String, Number)) {
+    return append(document.createTextNode(element));
+  } else if (matchType(element, Object) && matchType(element.type, Function)) {
+    return append(renderComponent(element));
+  } else if (matchType(element, Object) && matchType(element.type, String)) {
+    return append(renderElement(element));
+  } else if (matchType(element, Array)) {
+    return append(renderFragment(element));
   } else {
-    return renderElement(type, props, children);
+    throw new Error('Invalid virtual DOM.');
   }
 }
 
 /**
- * Bootstraps Rocket rendering. Use this function to
- * render a component or element to the specified
- * parent element or CSS selector.
+ * Creates an virtual DOM tree element.
  *
- * @param {HTMLElement} parent
- * @param {any} component
+ * @param {any} type
+ * @param {any} [props]
+ * @param {...any} [children]
  */
-export function render(element, component) {
-  const parent = element instanceof HTMLElement
-    ? element
-    : document.querySelector(element);
-
-  const child = component instanceof HTMLElement
-    ? component
-    : createElement(component, null, null);
-
-  removeChildren(parent);
-  appendChildren(parent, child);
+export function createElement(type, props, ...children) {
+  return { type, props, children };
 }
