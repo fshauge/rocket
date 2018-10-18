@@ -8,16 +8,16 @@ The goal is to reason about how React handles DOM rendering,
 and create a rendering system from scratch that can be
 used in assignments that require pure HTML, CSS and JavaScript only.
 
-The code is not currently a library. It contains code to generate
-DOM elements as well. It might be seperated in the future,
-but as of now (WIP), it will stay as is.
-
 ## Usage
-Install the dev dependencies and start a development server:
+```javascript
+import * as Rocket from '...';
 
-```
-$ npm install
-$ npm start
+Rocket.ready(() => {
+  Rocket.render(
+    ...,
+    document.body
+  );
+});
 ```
 
 ## Progress / features
