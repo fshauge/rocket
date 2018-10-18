@@ -38,9 +38,9 @@ function renderFragment(children) {
  * @param {*} parent
  */
 export function render(element, parent) {
-  const append = parent ?
-    child => parent.appendChild(child) :
-    child => child;
+  const append = parent
+    ? child => parent.appendChild(child)
+    : child => child;
 
   if (isNullOrUndefined(element) || matchType(element, Boolean)) {
     return append(document.createTextNode(''));
