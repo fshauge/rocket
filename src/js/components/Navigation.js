@@ -1,15 +1,26 @@
 import * as Rocket from '../rocket/index.js';
 import List from './List.js';
-import Link from './Link.js';
 
-export default ({ routes, activeIndex }) => (
+const links = [
+  {
+    path: '#',
+    title: '🚀 Rocket'
+  },
+  {
+    path: '#',
+    title: 'About'
+  }
+];
+
+export default ({ activeIndex }) => (
   Rocket.createElement(
     'nav',
     null,
     Rocket.createElement(
       List,
       {
-        items: routes,
+        className: 'container',
+        items: links,
         render: ({ path, title }, index) => (
           Rocket.createElement(
             'div',
@@ -17,7 +28,7 @@ export default ({ routes, activeIndex }) => (
               ? { className: 'active' }
               : null,
             Rocket.createElement(
-              Link,
+              'a',
               {
                 href: path
               },

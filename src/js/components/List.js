@@ -1,9 +1,9 @@
 import * as Rocket from '../rocket/index.js';
 
-export default ({ items, render }) => (
+export default ({ items, render, ...props }) => (
   Rocket.createElement(
     'ul',
-    null,
+    props,
     items.map((item, index) => (
       Rocket.createElement(
         'li',
