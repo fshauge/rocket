@@ -18,15 +18,15 @@ const matchers = {
  * @param {...any} types
  */
 export function matchType(value, ...types) {
-  if (isNullOrUndefined(value)) {
+  if (!isNullOrUndefined(value)) {
     return false;
   }
 
-  for (const matcher in matchers) {
-    if (typeof value === matcher && matchers[matcher](types)) {
-      return true;
-    }
-  }
+  const match = matchers[typeof value];
 
-  return types.includes(value.constructor);
+  if (match) {
+    return match(types);
+  } else {
+    return types.includes(value.constructor);
+  }
 }
