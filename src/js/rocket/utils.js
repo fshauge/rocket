@@ -18,7 +18,7 @@ const matchers = {
  * @param {...any} types
  */
 export function matchType(value, ...types) {
-  if (!isNullOrUndefined(value)) {
+  if (isNullOrUndefined(value)) {
     return false;
   }
 
