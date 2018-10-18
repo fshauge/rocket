@@ -29,6 +29,12 @@ function renderElement({ type, props, children }) {
   return element;
 }
 
+function renderFragment(children) {
+  const fragment = document.createDocumentFragment();
+  children.forEach(child => render(child, fragment));
+  return fragment;
+}
+
 /**
  * Renders a virtual DOM tree element to the document.
  *
@@ -48,6 +54,8 @@ export function render(element, parent) {
     return append(renderComponent(element));
   } else if (matchType(element, Object) && matchType(element.type, String)) {
     return append(renderElement(element));
+  } else if (matchType(element, Array)) {
+    return append(renderFragment(element));
   } else {
     console.error('Invalid virtual DOM.', element);
   }
