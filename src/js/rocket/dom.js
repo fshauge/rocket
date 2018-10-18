@@ -1,37 +1,33 @@
 import { isNullOrUndefined, matchType } from './utils.js';
-
-function assignProps(element, props) {
-  for (const prop in props) {
-    if (prop !== 'children') {
-      element[prop] = props[prop];
-    }
-  }
-}
+import { restrictedProps } from './props.js';
 
 function renderComponent({ type: component, props, children }) {
   return render(component({ ...props, children }));
 }
 
-function renderChildren(element, children) {
-  if (!isNullOrUndefined(children)) {
-    if (matchType(children, Array)) {
-      children.forEach(child => renderChildren(element, child));
-    } else {
-      render(children, element);
-    }
-  }
-}
-
 function renderElement({ type, props, children }) {
   const element = document.createElement(type);
-  assignProps(element, props);
-  renderChildren(element, children);
+
+  for (const prop in props) {
+    if (!restrictedProps.includes(prop)) {
+      element[prop] = props[prop];
+    }
+  }
+
+  for (const child of children.flat()) {
+    render(child, element);
+  }
+
   return element;
 }
 
 function renderFragment(children) {
   const fragment = document.createDocumentFragment();
-  children.forEach(child => render(child, fragment));
+
+  for (const child of children) {
+    render(child, fragment);
+  }
+
   return fragment;
 }
 
@@ -57,7 +53,7 @@ export function render(element, parent) {
   } else if (matchType(element, Array)) {
     return append(renderFragment(element));
   } else {
-    console.error('Invalid virtual DOM.', element);
+    throw new Error('Invalid virtual DOM.');
   }
 }
 
@@ -66,8 +62,8 @@ export function render(element, parent) {
  *
  * @param {any} type
  * @param {any} [props]
- * @param {any} [children]
+ * @param {...any} [children]
  */
-export function createElement(type, props, children) {
+export function createElement(type, props, ...children) {
   return { type, props, children };
 }
