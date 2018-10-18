@@ -6,8 +6,4 @@ Rocket.ready(() => {
     Rocket.createElement(App, null, null),
     document.getElementById('root')
   );
-
-  console.log(Rocket.render({
-    type: null
-  }));
 });
