@@ -23,6 +23,6 @@ $ npm start
 ## Progress / features
 - [x] Render simple DOM elements (h1, p, div, etc.)
 - [x] Render stateless components (function)
-- [ ] Create a virtual DOM (VDOM) and render it
+- [x] Create a virtual DOM (VDOM) and render it
 - [ ] Implement patching (patching the VDOM and rendering parts of it)
 - [ ] Render stateful componets (class)
