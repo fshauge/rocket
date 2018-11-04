@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "author": "fshauge",
   "license": "MIT",
+  "scripts": {
+    "example": "live-server example"
+  },
   "devDependencies": {
-    "eslint": "^5.6.1"
+    "eslint": "^5.6.1",
+    "live-server": "^1.2.0"
   }
 }
