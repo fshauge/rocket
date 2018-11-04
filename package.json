@@ -1,11 +1,6 @@
 {
-  "name": "html-template",
+  "name": "rocket",
   "version": "1.0.0",
-  "keywords": [
-    "html",
-    "dom",
-    "rendering"
-  ],
   "author": "fshauge",
   "license": "MIT",
   "devDependencies": {
