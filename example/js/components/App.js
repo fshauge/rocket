@@ -3,6 +3,5 @@ import Greeting from './Greeting.js';
 
 const names = ['A', 'B', 'C'];
 
-export default () => names.map(name =>(
-  Rocket.createElement(Greeting, { name })
-));
+export default () =>
+  names.map(name => Rocket.createElement(Greeting, { name }));
